@@ -23,13 +23,16 @@ def main():
 
     # Pegar os tweets
     logger.info("Começando a pegar os tweets.")
-    cbvj_tweets = twitter_API.user_timeline(screen_name='bvsc_joinville', tweet_mode='extended')
+    cbvj_tweets = twitter_API.user_timeline(screen_name='bvsc_joinville', tweet_mode='extended', count=500)
    
     for tweet in cbvj_tweets: 
         # Jogar os tweets pegos numa base SQLite.
         try:
             storage.add_tweet(tweet.id, tweet.full_text, tweet.created_at)
-        except:
+            logger.info(f"O tweet de ID {tweet.id} foi adicionado na base.")
+        except:  # Como a coluna ID foi criada com o atributo UNIQUE,
+                 # caso haja um tweet repetido (ié, com o mesmo ID), 
+                 # simplesmente irá cair aqui.
             logger.info(f"O tweet de ID {tweet.id} já existia na base.")
         
 if __name__ == "__main__":
