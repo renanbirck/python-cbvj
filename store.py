@@ -24,5 +24,9 @@ class TweetStorage:
         self.connection.commit()
     
     def get_tweet_by_ID(self, tweet_ID):
-        self.cursor.execute('SELECT tweet_ID, tweet_text, created FROM tweets WHERE tweet_ID = ?', tweet_ID)
-                    
+        return list(self.cursor.execute('SELECT tweet_ID, tweet_text, created FROM tweets WHERE tweet_ID = ?', tweet_ID))
+
+    def get_all_events(self):
+        """ Consulta o banco e retorna tudo aquilo que for ocorrência. """
+
+        return list(self.cursor.execute('SELECT tweet_ID, tweet_text, created FROM tweets WHERE tweet_text LIKE "Ocorrência:%" ORDER BY tweet_ID DESC'))

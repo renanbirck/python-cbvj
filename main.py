@@ -5,7 +5,6 @@ import tweepy
 import logging
 import keys, store
 
-
 #### Autenticação
 def authenticate_oauth():
     auth = tweepy.OAuthHandler(keys.API_KEY, keys.API_SECRET_KEY)
@@ -23,7 +22,7 @@ def main():
 
     # Pegar os tweets
     logger.info("Começando a pegar os tweets.")
-    cbvj_tweets = twitter_API.user_timeline(screen_name='bvsc_joinville', tweet_mode='extended', count=500)
+    cbvj_tweets = twitter_API.user_timeline(screen_name='bvsc_joinville', tweet_mode='extended', count=200)
    
     for tweet in cbvj_tweets: 
         # Jogar os tweets pegos numa base SQLite.
