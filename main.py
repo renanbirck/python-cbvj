@@ -33,6 +33,8 @@ def main():
                  # caso haja um tweet repetido (ié, com o mesmo ID), 
                  # simplesmente irá cair aqui.
             logger.info(f"O tweet de ID {tweet.id} já existia na base.")
+
+    storage.parse_all_tweets()
         
 if __name__ == "__main__":
     main()
