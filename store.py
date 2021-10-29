@@ -5,8 +5,10 @@
 import sqlite3, parse, logging
 
 class TweetStorage:
+    """ Uma classe para tratamento do armazenamento dos _tweets_ coletados. """
     def __init__(self, database_name = 'tweets.db'):
-        
+        """ Quando o objeto é instanciado, criar uma conexão com o BD e uma instância
+        do logger. """
         self.connection = sqlite3.connect(database_name)
         self.cursor = self.connection.cursor()
         self.initialize_table()
@@ -30,10 +32,12 @@ class TweetStorage:
                             place TEXT NOT NULL, neighbourhood TEXT NOT NULL, created INTEGER NOT NULL)''')
     
     def add_tweet(self, tweet_ID, tweet_text, creation_date):
+        """ Adiciona um tweet. """
         self.cursor.execute('INSERT INTO tweets VALUES (?, ?, ?)', (tweet_ID, tweet_text, creation_date))
         self.connection.commit()
     
     def get_tweet_by_ID(self, tweet_ID):
+        """ Puxa um tweet por ID. """
         return list(self.cursor.execute('SELECT tweet_ID, tweet_text, created FROM tweets WHERE tweet_ID = ?', tweet_ID))
 
     def get_all_events(self):
