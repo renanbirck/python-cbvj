@@ -9,7 +9,7 @@ import keys, store
 def authenticate_oauth():
     auth = tweepy.OAuthHandler(keys.API_KEY, keys.API_SECRET_KEY)
     auth.set_access_token(keys.ACCESS_KEY, keys.ACCESS_SECRET_KEY)
-    api = tweepy.API(auth, wait_on_rate_limit_notify=True, wait_on_rate_limit=True)
+    api = tweepy.API(auth, wait_on_rate_limit=True)
     return api
 
 #### Iniciar 
