@@ -1,0 +1,1 @@
+SELECT t.tweet_ID, t.tweet_text FROM tweets t LEFT JOIN parsed_tweets p ON p.tweet_ID = t.tweet_ID WHERE p.tweet_ID IS NULL

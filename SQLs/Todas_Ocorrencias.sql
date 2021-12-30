@@ -1,0 +1,1 @@
+SELECT * FROM tweets WHERE tweet_text LIKE 'Ocorrência:%' ORDER BY tweet_ID DESC
