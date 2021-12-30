@@ -53,9 +53,10 @@ class TweetStorage:
                 to_insert = (tweet_ID, *parsed_tweet, creation_date)
                 self.cursor.execute('INSERT INTO parsed_tweets VALUES (?, ?, ?, ?, ?, ?, ?)', to_insert)
                 self.logger.info(f"O tweet com ID {tweet_ID} foi processado e adicionado na base.")
-                self.logger.info(f"{tweet_ID} {parsed_tweet}")
-            except:
-                self.logger.info(f"Erro processando o tweet, ou ele já existia: {tweet_ID} {tweet_text}")
-                pass
+                #self.logger.info(f"{tweet_ID} {parsed_tweet}")
+            except ValueError:
+                self.logger.info(f"Erro processando o tweet (fora do formato?): {tweet_ID} {tweet_text}")
+            except sqlite3.IntegrityError:
+                self.logger.info(f"O tweet de ID {tweet_ID} já existia na base.")
 
         self.connection.commit()
