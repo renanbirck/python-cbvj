@@ -10,13 +10,20 @@ def parse_tweet(text):
 
     retorna ('29/07', '15h07', 'Queda de altura (&gt; 3 metros)', 'Rua Almirante Tamandare, 45', 'América')
     """
-
-    # 1. Troca a quebra de linha por um traço, e depois trunca no traço.
-    parts = text.replace('\r', ' - ').split(' - ')
-                                     
-    # Aqui teremos algo no formato
-    # ['Ocorrência: DD/MM', 'HHhMM', 'tipo da ocorrência', 'Localização: XXX', 'Bairo: XXX'].
-    # Vamos quebrar em partes depois do ":" e pegar o último elemento, 
-    # dessa forma iremos ter apenas os valores que nos interessam. Se houver ":", pegamos a parte depois dele.
+    # 1. Truncar na quebra de linha 
+    parts = text.split("\r")
     
-    return tuple([part.split(": ")[-1] for part in parts])
+    linha = [None, None]
+    linha[0] = parts[0].split(':')[1].strip()
+    linha[1] = parts[1].split('-')
+
+    # Aqui, parts[0] é a primeira linha. Como podemos ter ocorrências com mais campos,
+    # vamos pegar data, hora e o resto.
+
+    data_ocorrencia, hora_ocorrencia, ocorrencia = [campo.strip() for campo in linha[0].split("-",maxsplit=2)]
+
+    # Agora vamos tratar a segunda linha
+    local, bairro = [campo.split(":", maxsplit=1)[1].strip() for campo in linha[1]]
+
+    #print(data_ocorrencia, hora_ocorrencia, ocorrencia)
+    return (data_ocorrencia, hora_ocorrencia, ocorrencia, local, bairro)
