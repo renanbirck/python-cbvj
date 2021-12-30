@@ -48,7 +48,10 @@ class TweetStorage:
         """ Consulta o banco e processa todos os tweets, adicionando na tabela parsed_tweet """
         all_tweets = self.get_all_events()
         for (tweet_ID, tweet_text, creation_date) in all_tweets:
-            parsed_tweet = parse.parse_tweet(tweet_text)
+            try:
+                parsed_tweet = parse.parse_tweet(tweet_text)
+            except:
+                print(f"Erro processando o tweet {tweet_ID}: {tweet_text}")
             to_insert = (tweet_ID, *parsed_tweet, creation_date)
             try: # O tweet não está na base
                 self.cursor.execute('INSERT INTO parsed_tweets VALUES (?, ?, ?, ?, ?, ?, ?)', to_insert)
