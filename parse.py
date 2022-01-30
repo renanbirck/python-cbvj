@@ -23,6 +23,13 @@ def parse_tweet(text):
     data_ocorrencia, hora_ocorrencia, ocorrencia = [campo.strip() for campo in linha[0].split(" - ",maxsplit=2)]
 
     # Agora vamos tratar a segunda linha
-    local, bairro = [campo.split(":", maxsplit=1)[1].strip() for campo in linha[1]]
+    try:
+        local, bairro = [campo.split(":", maxsplit=1)[1].strip() for campo in linha[1]]
+    except:
+        print("aqui")
+        local = ' '.join(linha[1][:-1])
+        bairro = linha[1][-1]
+        print(local)
+        print(bairro)
 
     return (data_ocorrencia, hora_ocorrencia, ocorrencia, local, bairro)
