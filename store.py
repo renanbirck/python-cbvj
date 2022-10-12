@@ -57,6 +57,7 @@ class TweetStorage:
             except ValueError:
                 self.logger.info(f"Erro processando o tweet (fora do formato?): {tweet_ID} {tweet_text}")
             except sqlite3.IntegrityError:
-                self.logger.info(f"O tweet de ID {tweet_ID} já existia na base.")
+                pass
+                #self.logger.info(f"O tweet de ID {tweet_ID} já existia na base.")
 
         self.connection.commit()
