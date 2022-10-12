@@ -26,7 +26,7 @@ def parse_tweet(text):
     try:
         local, bairro = [campo.split(":", maxsplit=1)[1].strip() for campo in linha[1]]
     except:
-        print("aqui")
+        print("Tweet fora do padrão!")
         local = ' '.join(linha[1][:-1])
         bairro = linha[1][-1]
         print(local)
