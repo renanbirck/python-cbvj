@@ -1,3 +1,5 @@
+# 2023-05-23: Não uso mais o Twitter e não quero mais saber da plataforma desde o dia em que ela foi estragada após a compra pelo Elon Musk. Dessa forma, estou arquivando o projeto e não irei mais mexer nele.
+
 O [Corpo de Bombeiros de Joinville/SC](http://www.cbvj.com.br/) (CBVJ, que é como eu irei chamar daqui em diante) divulga, por meio do seu [twitter](https://twitter.com/bvsc_joinville), as ocorrências no município. Isso fornece um material bastante interessante para projetos de análise de dados.
 
 Neste projeto, iremos coletar os dados do tweet para podermos gerar gráficos e análises diversas.
